@@ -50,6 +50,14 @@ Suggestions and contributions are always welcome.
 
 Given an integer, `n`, return an array containing all of its divisors.
 
+**fisherYatesShuffle(arr, inplace, rng)**
+
+Performs the fast Fisher-Yates randomization of an array, `arr`. If the optional 
+`inplace` argument is `true` (the default), `arr` is sorted in place; otherwise, 
+a new array is created. The optional `rng` argument can be used to supply a 
+random number generation callback to replace the default `Math.random`. Returns 
+the shuffled array.
+
 **isPrime(n)**
 
 Tests `n` for primality, returning `true` if prime or `false` if composite.
@@ -78,8 +86,15 @@ I cannot be thankful enough to the many people who have built useful, quality
 code and given it to the larger community of Node developers under permissive
 open source licenses. 
 
+Even if you don't care about the original version of the functions in `mishmath`,
+the developers' profile pages are worth looking at. Many of them are prolific
+module authors.
+
 **divisors** is based on [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
 [`get-divisors`](https://www.npmjs.com/package/get-divisors).
+
+**fisherYatesShuffle** is derived from [dcousens](https://www.npmjs.com/~dcousens)'
+[`fisher-yates`](https://www.npmjs.com/package/fisher-yates).
 
 **isPrime** is derived from [Bradley Flood](https://www.npmjs.com/~bradleyflood)'s
 [`is-prime-number`](https://www.npmjs.com/package/is-prime-number). The original
@@ -128,8 +143,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <a name="todo"></a>
 ## Todo
 
-* Everything
-* Solicit suggestions from users.
+* Lehmer codes
 
 <a name="changelog"></a>
 ## Changelog
@@ -137,6 +151,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 0.0.1: Initial release, including
 
 * `divisors`
+* `fisherYatesShuffle`
 * `isPrime`
 * `permutationParity`
 * `permutations` plus unique option
