@@ -50,6 +50,61 @@ function uniq(arr) {
 
 var mishmath = { };
 
+
+//==============================================================================
+// Implements the fast Fisher-Yates shuffle. If the optional inplace argument
+// is true, which is the default, arr is shuffled in place. The optional rng
+// argument is a random number generation function. If not specified,
+// Math.random is used. (Stupid JS trick: rng can be specified without inplace.)
+// The shuffled array is returned.
+//==============================================================================
+
+mishmath.fisherYatesShuffle = function(arr, inplace, rng) {
+    "use strict";
+
+    if(inplace === undefined) {
+        inplace = true;
+        rng = Math.random;
+    } else {
+        if(typeof inplace == "function") {
+            rng = inplace;
+            inplace = true;
+        }
+    }
+
+    if(inplace) {
+
+        var k = arr.length;
+
+        while(k) {
+            var i = Math.floor(rng() * k);
+            k--;
+            var temp = arr[k];
+            arr[k] = arr[i];
+            arr[i] = temp;
+        }
+
+        return arr;
+
+    } else {
+
+        var result = [];
+
+        for(var i = 0; i < arr.length; ++i) {
+            var j = Math.floor(rng() * (i + 1));
+
+            if (j !== i)
+                result[i] = result[j];
+
+
+            result[j] = arr[i];
+        }
+
+        return result;
+    }
+}
+
+
 //==============================================================================
 // Given an integer, returns an array containing its divisors.
 //==============================================================================

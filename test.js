@@ -52,6 +52,7 @@ function testPrimeFactors() {
     }
 }
 
+
 // cartesianToPolar/polarToCartesian============================================
 
 function testCartesianToPolar() {
@@ -130,6 +131,24 @@ function testSphericalCylindrical() {
 }
 
 
+// fisherYatesShuffle =========================================================
+
+
+function testFisherYatesShuffle() {
+    var arr1 = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+    var arr2;
+
+    for(var n = 0; n < 10; n++) {
+        mm.fisherYatesShuffle(arr1);
+        console.log("fisherYatesShuffle/inplace: ", arr1);
+    }
+
+    for(var n = 0; n < 10; n++) {
+        arr2 = mm.fisherYatesShuffle(arr1);
+        console.log("fisherYatesShuffle/copy: ", arr2);
+    }
+}
+
 
 testDivisors();
 testIsPrime();
@@ -141,7 +160,7 @@ testDeg2rad();
 testCartesianSpherical();
 testCartesianCylindrical();
 testSphericalCylindrical();
-
+testFisherYatesShuffle();
 
 
 
