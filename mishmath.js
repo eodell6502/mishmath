@@ -213,10 +213,135 @@ mishmath.primeFactors = function(n) {
 }
 
 
+//==============================================================================
+// Given polar coordinates r (radius) and t (angle), returns the Cartesian
+// coordinates in the form { x: number, y: number }
+//==============================================================================
+
+mishmath.polarToCartesian = function(r, t) {
+    return { x: r * Math.cos(t), y: r * Math.sin(t) };
+}
 
 
+//==============================================================================
+// Given Cartesian coordinates x and y, returns the polar coordinates in the
+// form { r: number, t: number } where r is the radial component and t is the
+// angular component.
+//==============================================================================
+
+mishmath.cartesianToPolar = function(x, y) {
+    return { r: Math.sqrt(x*x + y*y), t: Math.atan2(y, x) };
+}
 
 
+//==============================================================================
+// Given an angle in degrees, returns its equivalent in radians.
+//==============================================================================
+
+mishmath.deg2rad = function(degrees) {
+    return degrees * (Math.PI / 180);
+}
+
+
+//==============================================================================
+// Given an angle in radians, returns its equivalent in degrees.
+//==============================================================================
+
+mishmath.rad2deg = function(radians) {
+    return radians * (180 / Math.PI);
+}
+
+
+//==============================================================================
+// Given the three-dimensional Cartesian coordinates x, y, z, returns the
+// spherical coordinates rho (radial distance), theta (azimuthal angle), and
+// phi (polar angle/inclination).
+//==============================================================================
+
+mishmath.cartesianToSpherical = function(x, y, z) {
+    var rho = Math.sqrt(x*x + y*y + z*z);
+
+    return {
+        rho:   rho,
+        theta: Math.acos(z / rho),
+        phi:   Math.atan(y / x)
+    };
+}
+
+
+//==============================================================================
+// Given the spherical coordinates rho (radial distance), theta (azimuthal
+// angle), and phi (polar angle/inclination), return the three-dimensional Cartesian
+// coordinates x, y, z.
+//==============================================================================
+
+mishmath.sphericalToCartesian = function(rho, theta, phi) {
+    var sinTheta = Math.sin(theta)
+
+    return {
+        x: rho * sinTheta * Math.cos(phi),
+        y: rho * sinTheta * Math.sin(phi),
+        z: rho * Math.cos(theta)
+    };
+}
+
+
+//==============================================================================
+// Given three-dimensional Cartesian coordinates x, y, z, return the cylindrical
+// coordinates rho (radial distance), phi (azimuthal angle in radians),
+// and z (axial coordinate).
+//==============================================================================
+
+mishmath.cartesianToCylindrical = function(x, y, z) {
+    return {
+        rho: Math.sqrt(x*x + y*y),
+        phi: Math.atan2(y, x),
+        z:   z
+    };
+}
+
+
+//==============================================================================
+// Given cylindrical coordinates rho (radial distance), phi (azimuthal angle in
+// radians), and z (axial coordinate), returns the three-dimensional Cartesian
+// coordinates x, y, z.
+//==============================================================================
+
+mishmath.cylindricalToCartesian = function(rho, phi, z) {
+    return {
+        x: rho * Math.cos(phi),
+        y: rho * Math.sin(phi),
+        z: z
+    };
+}
+
+
+//==============================================================================
+// Converts spherical coordinates rho, theta, and phi into cylindrical coords
+// rho, phi, and z.
+//==============================================================================
+
+mishmath.sphericalToCylindrical = function(rho, theta, phi) {
+    return {
+        rho: rho * Math.sin(theta),
+        phi: phi,
+        z:   rho * Math.cos(theta)
+    };
+}
+
+
+//==============================================================================
+// Converts cylindrical coordinates rho, phi, and z into spherical coordinates
+// rho, theta, and phi.
+//==============================================================================
+
+mishmath.cylindricalToSpherical = function(rho, phi, z) {
+    return {
+        rho:   Math.sqrt(rho*rho + z*z),
+        theta: Math.atan(rho/z),
+        phi:   phi
+    };
+}
 
 
 module.exports = mishmath;

@@ -1,6 +1,8 @@
-# mishmath v0.0.1
+# mishmath v0.0.2
 
 **A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules**
+
+**NEW in 0.0.2**: degree/radian and coordinate system (Cartesian, polar, spherical, cylindrical) conversions.
 
 ## Table of Contents
 
@@ -46,6 +48,30 @@ Suggestions and contributions are always welcome.
 <a name="functions"></a>
 ## Functions
 
+**cartesianToPolar(x, y)**
+
+Given Cartesian coordinates `x` and `y`, returns an object of the form
+`{r: num, t: num} where `r` is the radial/rho value and `t` is
+the angular/theta value (in radians).
+
+**cartesianToSpherical(x, y, z)**
+
+Given 3D Cartesian coordinates `x`, `y`, `z`, returns an object of the form 
+`{rho: num, theta: num, phi: num}` where `rho` is the radial distance, `theta` 
+is the azimuthal angle in radians, and `phi` is polar angle (inclination) in 
+radians.
+
+**cylindricalToSpherical(rho, phi, z)**
+
+Given cylindrical coordinates `rho` (radial distance), `phi` (azimuth), and `z` 
+(height), returns an object of the form `{rho: num, theta: num, phi: num}` where 
+`rho` is the radial distance, `theta` is the azimuthal angle in radians, and 
+`phi` is polar angle (inclination) in radians.
+
+**deg2rad(degrees)**
+
+Given an angle in `degrees`, returns its equivalent in radians.
+
 **divisors(n)**
 
 Given an integer, `n`, return an array containing all of its divisors.
@@ -67,9 +93,31 @@ Given an array of arbitrary elements, `arr`, returns an array of all
 permutations. If the optional `unique` argument is `true`, only unique 
 permutations will be returned.
 
+**polarToCartesian(r, t)**
+
+Given polar coordinates `r` (radial/rho) and `t` (angular/theta), the latter
+in radians, returns an object of the form `{x: num, y: num}`.
+
 **primeFactors(n)**
 
 Returns an array containing the prime factors of `n`.
+
+**rad2deg(radians)**
+
+Given an angle in `radians`, returns its equivalent in degrees.
+
+**sphericalToCartesian(rho, theta, phi)**
+
+Given spherical coordinates `rho` (radial distance), `theta` (azimuthal angle in 
+radians), and `phi` (polar angle or inclination in radians), returns an object 
+of the form `{x: num, y: num, z: num}`.
+
+**sphericalToCylindrical(rho, theta, phi)**
+
+Given Given spherical coordinates `rho` (radial distance), `theta` (azimuthal angle in 
+radians), and `phi` (polar angle or inclination in radians), returns an object 
+of the form `{rho: num, phi: num, z: num}` where `rho` is the radial distance, `phi`
+is the azimuth, and `z` is the height.
 
 <a name="Credits"></a>
 ## Credits
@@ -133,6 +181,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <a name="changelog"></a>
 ## Changelog
+
+0.0.2: Weekly update (2019-05-28), including
+
+* `cartesianToCylindrical`
+* `cartesianToPolar`
+* `cartesianToSpherical`
+* `cylindricalToCartesian`
+* `cylindricalToSpherical`
+* `deg2rad`
+* `polarToCartesian`
+* `rad2deg`
+* `sphericalToCartesian`
+* `sphericalToCylindrical`
 
 0.0.1: Initial release, including
 
