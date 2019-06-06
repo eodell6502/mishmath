@@ -241,14 +241,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <a name="todo"></a>
 ## Todo
 
-* Lehmer codes
+* Extract disi, include math.js? Or try to gut ml-distance?
+* Generatorics
+* Wrapper around combogen to produce explicit array
 * Median
 * Linear regression
+* Lehmer codes
 
 <a name="changelog"></a>
 ## Changelog
 
-0.0.4
+0.0.4: Weekly update (2019-06-06), including:
 
 * `average`
 * `combogen`
