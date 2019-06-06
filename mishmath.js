@@ -401,7 +401,7 @@ mishmath.cylindricalToSpherical = function(rho, phi, z) {
 
 //==============================================================================
 // Given two arrays of coordinates, return the distance between them. Works for
-// two or more dimensions.
+// two or more dimensions. (Euclidean)
 //==============================================================================
 
 mishmath.distance = function(a, b) {
@@ -417,6 +417,213 @@ mishmath.distance = function(a, b) {
         return Math.sqrt(sumOfSquares);
     }
 }
+
+
+//==============================================================================
+// Returns a generator which yields successively each combination of M elements
+// from a set of N length. The optional mode argument defaults to 'index',
+// producing an array of indices. If 'mask' is used, it returns an arrays of
+// ones and zeroes.
+//==============================================================================
+
+mishmath.combogen = function *(M, N, mode = 'index') {
+    var a = new Array(N);
+    var c = new Array(M);
+    var b = new Array(N);
+    var p = new Array(N + 2);
+    var x, y, z;
+
+    // init a and b
+
+    for(var i = 0; i < N; i++) {
+        a[i] = i;
+        if(i < N - M) b[i] = 0;
+            else b[i] = 1;
+    }
+
+    // init c
+
+    for(i = 0; i < M; i++) {
+        c[i] = N - M + i;
+    }
+
+    // init p
+
+    for(i = 0; i < p.length; i++) {
+        if(i === 0)
+            p[i] = N + 1;
+        else if(i <= N - M)
+            p[i] = 0;
+        else if(i <= N)
+            p[i] = i - N + M;
+        else
+            p[i] = -2;
+    }
+
+    function twiddle() {
+        var i, j, k;
+        j = 1;
+        while(p[j] <= 0) {
+            j++;
+        }
+        if(p[j - 1] === 0) {
+            for(i = j - 1; i !== 1; i--) {
+            p[i] = -1;
+            }
+            p[j] = 0;
+            x = z = 0;
+            p[1] = 1;
+            y = j - 1;
+        } else {
+            if(j > 1) {
+                p[j - 1] = 0;
+            }
+            do {
+                j++;
+            } while(p[j] > 0);
+            k = j - 1;
+            i = j;
+            while(p[i] === 0) {
+                p[i++] = -1;
+            }
+            if(p[i] === -1) {
+                p[i] = p[k];
+                z = p[k] - 1;
+                x = i - 1;
+                y = k - 1;
+                p[k] = -1;
+            } else {
+                if(i === p[0]) {
+                    return 0;
+                } else {
+                    p[j] = p[i];
+                    z = p[i] - 1;
+                    p[i] = 0;
+                    x = j - 1;
+                    y = i - 1;
+                }
+            }
+        }
+        return 1;
+    }
+
+    if(mode === 'index') {
+        yield c.slice();
+        while(twiddle()) {
+            c[z] = a[x];
+            yield c.slice();
+        }
+    } else if(mode === 'mask') {
+        yield b.slice();
+        while(twiddle()) {
+            b[x] = 1;
+            b[y] = 0;
+            yield b.slice();
+        }
+    } else {
+        throw new Error('Invalid mode');
+    }
+};
+
+
+//==============================================================================
+// Given an array of numbers, returns the standard deviation thereof.
+//==============================================================================
+
+mishmath.stddev = function(values) {
+  "use strict";
+
+  // Get the numbers of data points.
+  const length = values.length;
+
+  // Sum the data points.
+  const sum = values.reduce((pv, cv) => {
+    return pv + cv;
+  }, 0);
+
+  // Get the average of the numbers.
+  const mean = sum / length;
+
+  // Get the variance (average of the squared differences from the mean)
+  const variance = values.reduce((pv, cv) => {
+    return pv + Math.pow(cv - mean, 2) / length;
+  }, 0);
+
+  // Return the standard Deviation (square root of variance)
+  return Math.sqrt(variance);
+
+}
+
+
+//==============================================================================
+// Returns the value of the normal distribution function for a specified value,
+// mean, and standard deviation
+//==============================================================================
+
+mishmath.normdist = function(x, mean, standardDeviation) {
+  "use strict";
+
+  function cdf(x, mean, stdev) {
+    return 0.5 * (1 + erf((x - mean) / (Math.sqrt(2 * stdev))));
+  }
+
+
+  function erf(z) {
+
+    const sign = (z >= 0) ? 1 : -1;
+    z = Math.abs(z);
+
+    const a1 =  0.254829592;
+    const a2 = -0.284496736;
+    const a3 =  1.421413741;
+    const a4 = -1.453152027;
+    const a5 =  1.061405429;
+    const p  =  0.3275911;
+
+    // A&S formula 7.1.26 with a slice of Horner's
+    const t = 1.0/(1.0 + p*z);
+    const y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-z * z);
+    return sign * y;
+  }
+
+  return Math.round(100000*cdf(x,mean,standardDeviation))/100000;
+
+}
+
+
+//==============================================================================
+// Given an array of numbers, return their variance.
+//==============================================================================
+
+mishmath.variance = function(values) {
+    'use strict';
+
+    var mean = mishmath.average(values);
+
+    function sum(a, b) {
+        var diff = b - mean;
+        return a + (diff * diff);
+    }
+
+    return values.reduce(sum, 0) / values.length;
+};
+
+
+//==============================================================================
+// Given an array of numbers, return their arithmetic mean.
+//==============================================================================
+
+mishmath.average = function(values) {
+    'use strict';
+
+    var sum = 0;
+    for(var i = 0; i < values.length; i++)
+        sum += values[i];
+
+    return sum / values.length;
+};
+
+
 
 
 module.exports = mishmath;

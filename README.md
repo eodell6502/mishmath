@@ -48,6 +48,10 @@ Suggestions and contributions are always welcome.
 <a name="functions"></a>
 ## Functions
 
+**average(ary)**
+
+Given an array of numbers, returns their average or arithmetic mean.
+
 **cartesianToPolar(x, y)**
 
 Given Cartesian coordinates `x` and `y`, returns an object of the form
@@ -60,6 +64,21 @@ Given 3D Cartesian coordinates `x`, `y`, `z`, returns an object of the form
 `{rho: num, theta: num, phi: num}` where `rho` is the radial distance, `theta` 
 is the azimuthal angle in radians, and `phi` is polar angle (inclination) in 
 radians.
+
+**combogen(m, n, mode)**
+
+This little gem returns a generator function which yields successively each 
+combination of `m` elements from a set of `n` members. If the optional `mode` 
+argument is `'index'` (the default), it returns `m`-length arrays of indices. If 
+`mode` is `'mask'`, it returns `n`-length arrays of ones and zeroes.
+
+```javascript
+var gen = combogen(2, 4);
+console.log([...gen]); // [ [ 3, 2 ], [ 0, 2 ], [ 1, 2 ], [ 1, 2 ], [ 0, 2 ], [ 0, 1 ] ]
+
+gen = combogen(2, 4, 'mask');
+console.log([...gen]); // [ [ 0, 0, 1, 1 ][ 1, 0, 0, 1 ],[ 0, 1, 0, 1 ],[ 0, 1, 1, 0 ],[ 1, 0, 1, 0 ],[ 1, 1, 0, 0 ] ]
+```
 
 **cylindricalToSpherical(rho, phi, z)**
 
@@ -74,8 +93,9 @@ Given an angle in `degrees`, returns its equivalent in radians.
 
 **distance(a, b)**
 
-Returns the distance between two points, `a` and `b`, which are both represented
-as arrays of coordinates. Works for any arbitrary dimension of 2 or higher.
+Returns the Euclidean distance between two points, `a` and `b`, which are both 
+represented as arrays of coordinates. Works for any arbitrary dimension of 2 or 
+higher.
 
 **divisors(n)**
 
@@ -92,6 +112,11 @@ the shuffled array.
 **isPrime(n)**
 
 Tests `n` for primality, returning `true` if prime or `false` if composite.
+
+**normdist(value, mean, stddev)**
+
+Given a value, mean, and standard deviation, returns the value of the normal
+distribution.
 
 **permutationParity(arr)**
 
@@ -132,6 +157,14 @@ radians), and `phi` (polar angle or inclination in radians), returns an object
 of the form `{rho: num, phi: num, z: num}` where `rho` is the radial distance, `phi`
 is the azimuth, and `z` is the height.
 
+**stddev(ary)**
+
+Takes an array of numbers and returns their standard deviation.
+
+**variance(ary)**
+
+Given an array of numbers, returns the array's variance.
+
 <a name="Credits"></a>
 ## Credits
 
@@ -143,6 +176,9 @@ Even if you don't care about the original version of the functions in `mishmath`
 the developers' profile pages are worth looking at. Many of them are prolific
 module authors.
 
+**combogen** is based on the very nicely coded [`ml-combinations`](https://www.npmjs.com/package/ml-combinations) 
+package.
+
 **divisors** is based on [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
 [`get-divisors`](https://www.npmjs.com/package/get-divisors).
 
@@ -153,6 +189,9 @@ module authors.
 [`is-prime-number`](https://www.npmjs.com/package/is-prime-number). The original
 had a subtle bug in it that miscategorized 2 and 3 as composite numbers, which
 has now been fixed.
+
+**normdist** is from [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
+[`get-normal-distribution`](https://www.npmjs.com/package/get-normal-distribution).
 
 **permutationParity** was pulled out of [Mikola Lysenko](https://www.npmjs.com/~mikolalysenko)'s
 [`permutation-parity`](https://www.npmjs.com/package/permutation-parity). Mikola has
@@ -166,6 +205,12 @@ where it is wrapped around the original `get-permutations` module.
 
 **primeFactors** is derived from [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
 [`get-prime-factors`](https://www.npmjs.com/package/get-prime-factors).
+
+**stddev** came from [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
+[`get-standard-deviation`](https://www.npmjs.com/package/get-standard-deviation).
+
+**variance** was taken from [bytespider](https://www.npmjs.com/~bytespider)'s
+[`variance`](https://www.npmjs.com/package/variance) package.
 
 <a name="license"></a>
 ## License
@@ -197,13 +242,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## Todo
 
 * Lehmer codes
+* Median
+* Linear regression
 
 <a name="changelog"></a>
 ## Changelog
 
 0.0.4
 
+* `average`
+* `combogen`
 * `distance`
+* `normdist`
+* `variance`
 
 0.0.3: Weekly update (2019-05-28), including
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const mm = require("./mishmath.js");
 
 // divisors ====================================================================
@@ -149,11 +151,49 @@ function testFisherYatesShuffle() {
     }
 }
 
+// distance ====================================================================
+
 function testDistance() {
     console.log("Diagonal of a unit square:    " + mm.distance([0, 0], [1, 1]));
     console.log("Diagonal of a unit cube:      " + mm.distance([0,0,0], [1,1,1]));
     console.log("Diagonal of a unit hypercube: " + mm.distance([0,0,0,0], [1,1,1,1]));
 }
+
+// combogen ====================================================================
+
+function testCombogen() {
+    var gen = mm.combogen(2, 4);
+    console.log([...gen]);
+    gen = mm.combogen(2, 4, 'mask');
+    console.log([...gen]);
+}
+
+// stddev ======================================================================
+
+function testStddev() {
+    console.log(mm.stddev([600,470,170,430,300])); // 147.32277488562318
+    console.log(mm.stddev([13,23,12,44,55])); // 17.21162397916013
+}
+
+// normdist =====================================================================
+
+function testNormdist() {
+    console.log(mm.normdist(2,0,1)); // 0.97725
+    console.log(mm.normdist(0,0,1)); // 0.5
+}
+
+// average ======================================================================
+
+function testAverage() {
+    console.log(mm.average([100, 100, 50, 50]));
+}
+
+// variance =====================================================================
+
+function testVariance() {
+    console.log(mm.variance([600, 470, 170, 430, 300]));
+}
+
 
 testDivisors();
 testIsPrime();
@@ -167,6 +207,8 @@ testCartesianCylindrical();
 testSphericalCylindrical();
 testFisherYatesShuffle();
 testDistance();
-
-
-
+testCombogen();
+testStddev();
+testNormdist();
+testAverage();
+testVariance();
