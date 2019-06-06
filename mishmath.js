@@ -399,5 +399,25 @@ mishmath.cylindricalToSpherical = function(rho, phi, z) {
 }
 
 
+//==============================================================================
+// Given two arrays of coordinates, return the distance between them. Works for
+// two or more dimensions.
+//==============================================================================
+
+mishmath.distance = function(a, b) {
+    if(a.length == 2)
+        return Math.sqrt(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2));
+    else if(a.length == 3)
+        return Math.sqrt(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2) + Math.pow(a[2] - b[2], 2));
+    else {
+        var sumOfSquares = 0;
+        for(var i = 0; i < a.length; i++) {
+            sumOfSquares += Math.pow(a[i] - b[i], 2);
+        }
+        return Math.sqrt(sumOfSquares);
+    }
+}
+
+
 module.exports = mishmath;
 

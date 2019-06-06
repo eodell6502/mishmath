@@ -149,6 +149,11 @@ function testFisherYatesShuffle() {
     }
 }
 
+function testDistance() {
+    console.log("Diagonal of a unit square:    " + mm.distance([0, 0], [1, 1]));
+    console.log("Diagonal of a unit cube:      " + mm.distance([0,0,0], [1,1,1]));
+    console.log("Diagonal of a unit hypercube: " + mm.distance([0,0,0,0], [1,1,1,1]));
+}
 
 testDivisors();
 testIsPrime();
@@ -161,6 +166,7 @@ testCartesianSpherical();
 testCartesianCylindrical();
 testSphericalCylindrical();
 testFisherYatesShuffle();
+testDistance();
 
 
 

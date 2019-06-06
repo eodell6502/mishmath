@@ -1,8 +1,8 @@
-# mishmath v0.0.2
+# mishmath v0.0.3
 
 **A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules**
 
-**NEW in 0.0.2**: degree/radian and coordinate system (Cartesian, polar, spherical, cylindrical) conversions.
+**NEW in 0.0.3**: degree/radian and coordinate system (Cartesian, polar, spherical, cylindrical) conversions.
 
 ## Table of Contents
 
@@ -71,6 +71,11 @@ Given cylindrical coordinates `rho` (radial distance), `phi` (azimuth), and `z`
 **deg2rad(degrees)**
 
 Given an angle in `degrees`, returns its equivalent in radians.
+
+**distance(a, b)**
+
+Returns the distance between two points, `a` and `b`, which are both represented
+as arrays of coordinates. Works for any arbitrary dimension of 2 or higher.
 
 **divisors(n)**
 
@@ -196,7 +201,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <a name="changelog"></a>
 ## Changelog
 
-0.0.2: Weekly update (2019-05-28), including
+0.0.4
+
+* `distance`
+
+0.0.3: Weekly update (2019-05-28), including
 
 * `cartesianToCylindrical`
 * `cartesianToPolar`
@@ -208,6 +217,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 * `rad2deg`
 * `sphericalToCartesian`
 * `sphericalToCylindrical`
+
+0.0.2: Fat fingers, ignore.
 
 0.0.1: Initial release, including
 
