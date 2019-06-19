@@ -194,6 +194,32 @@ function testVariance() {
     console.log(mm.variance([600, 470, 170, 430, 300]));
 }
 
+// manhattanDistance ============================================================
+
+function testManhattanDistance() {
+    for(i = 0; i < 6; i++) {
+        console.log("Manhattan distance from origin to " + i + ", " + i + ": " + mm.manhattanDistance([0,0], [i,i]));
+    }
+}
+
+// minkowskiDistance ============================================================
+
+function testMinkowskiDistance() {
+    for(i = 0; i < 6; i++) {
+        console.log("Minkowski distance of order 1 from origin to " + i + ", " + i + ": " + mm.minkowskiDistance([0,0], [i,i], 1));
+        console.log("Minkowski distance of order 2 from origin to " + i + ", " + i + ": " + mm.minkowskiDistance([0,0], [i,i], 2));
+    }
+
+}
+
+// chebyshevDistance ============================================================
+
+function testChebyshevDistance() {
+    for(i = 0; i < 6; i++) {
+        console.log("Chebyshev distance from origin to " + i + ", " + (i - 1) + ": " + mm.chebyshevDistance([0,0], [i,i-1]));
+    }
+}
+
 
 testDivisors();
 testIsPrime();
@@ -212,3 +238,6 @@ testStddev();
 testNormdist();
 testAverage();
 testVariance();
+testManhattanDistance();
+testMinkowskiDistance();
+testChebyshevDistance();

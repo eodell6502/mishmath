@@ -1,8 +1,8 @@
-# mishmath v0.0.3
+# mishmath v0.0.5
 
 **A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules**
 
-**NEW in 0.0.3**: degree/radian and coordinate system (Cartesian, polar, spherical, cylindrical) conversions.
+**NEW in 0.0.5**: Manhattan, Minkowski, and Chebyshev distances.
 
 ## Table of Contents
 
@@ -65,6 +65,11 @@ Given 3D Cartesian coordinates `x`, `y`, `z`, returns an object of the form
 is the azimuthal angle in radians, and `phi` is polar angle (inclination) in 
 radians.
 
+**chebyshevDistance(a, b)**
+
+Given two coordinate vectors of any dimensionality, return the Chebyshev 
+distance between them.
+
 **combogen(m, n, mode)**
 
 This little gem returns a generator function which yields successively each 
@@ -112,6 +117,17 @@ the shuffled array.
 **isPrime(n)**
 
 Tests `n` for primality, returning `true` if prime or `false` if composite.
+
+**manhattanDistance(a, b)**
+
+Given two coordinate vectors of any dimensionality, return the Manhattan 
+distance between them.
+
+**minkowskiDistance(a, b, p)**
+
+Given two coordinate vectors of any dimensionality, return the Minkowski 
+distance between them for order `p`. For `p == 1`, this is equivalent to the 
+Manhattan distance, and `p == 2` is equivalent to the Euclidean distance.
 
 **normdist(value, mean, stddev)**
 
@@ -190,6 +206,11 @@ package.
 had a subtle bug in it that miscategorized 2 and 3 as composite numbers, which
 has now been fixed.
 
+**manhattanDistance**, **minkowskiDistance**, and **chebyshevDistance** are from 
+[Michaël Zasso](https://github.com/targos) and [Miguel Angel Asencio Hurtado](https://github.com/maasencioh)'s 
+[`ml-distance`](https://www.npmjs.com/package/ml-distance), which
+is a smorgasbord of distance and similarity metrics.
+
 **normdist** is from [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
 [`get-normal-distribution`](https://www.npmjs.com/package/get-normal-distribution).
 
@@ -241,7 +262,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <a name="todo"></a>
 ## Todo
 
-* Extract disi, include math.js? Or try to gut ml-distance?
+* Continue to cherry-pick ml-distance?
 * Generatorics
 * Wrapper around combogen to produce explicit array
 * Median
@@ -250,6 +271,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <a name="changelog"></a>
 ## Changelog
+
+0.0.5: 
+
+* `manhattanDistance`
+* `minkowskiDistance`
 
 0.0.4: Weekly update (2019-06-06), including:
 

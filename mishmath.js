@@ -624,6 +624,55 @@ mishmath.average = function(values) {
 };
 
 
+//==============================================================================
+// Given two sets of coordinates of any dimensionality, return the Manhattan
+// distance between them.
+//==============================================================================
+
+mishmath.manhattanDistance = function(a, b) {
+    var i = 0,
+        ii = a.length,
+        d = 0;
+    for (; i < ii; i++) {
+        d += Math.abs(a[i] - b[i]);
+    }
+    return d;
+};
+
+
+//==============================================================================
+// Given two sets of coordinates of any dimensionality, return the Minkowski
+// distance for order p.
+//==============================================================================
+
+mishmath.minkowskiDistance = function(a, b, p) {
+    var i = 0,
+        ii = a.length,
+        d = 0;
+    for (; i < ii; i++) {
+        d += Math.pow(Math.abs(a[i] - b[i]),p);
+    }
+    return Math.pow(d,(1/p));
+};
+
+
+//==============================================================================
+// Given two sets of coordinates of any dimensionality, return the Chebyshev
+// distance between them.
+//==============================================================================
+
+mishmath.chebyshevDistance = function(a, b) {
+    var ii = a.length,
+        max = 0,
+        aux = 0;
+    for (var i = 0; i < ii ; i++) {
+        aux = Math.abs(a[i] - b[i]);
+        if (max < aux) {
+            max = aux;
+        }
+    }
+    return max;
+};
 
 
 module.exports = mishmath;
