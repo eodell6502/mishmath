@@ -220,6 +220,34 @@ function testChebyshevDistance() {
     }
 }
 
+// haversineDistance ============================================================
+
+function testHaversineDistance() {
+    var albany = { latitude: 44.630278, longitude: -123.096111 };
+    var ormond = { latitude: 29.286389, longitude: -81.075 };
+    var meters = mm.haversineDistance( albany.latitude, albany.longitude, ormond.latitude, ormond.longitude );
+    console.log("Distance between Albany, OR and Ormond Beach, FL is approximately " + Math.round(meters) + " meters or " + Math.round(meters/1000) + " kilometers.");
+}
+
+// segmentsIntersect ===========================================================
+
+function testSegmentsIntersect() {
+    var scalars = mm.segmentsIntersect(0, 0, 100, 100, 0, 100, 100, 0);
+    var objs    = mm.segmentsIntersect({x:0, y:0}, {x:100, y:100}, {x:0, y:100}, {x:100, y:0});
+    var arrays  = mm.segmentsIntersect([0, 0], [100, 100], [0, 100], [100, 0]);
+
+    console.log("Intersection with scalar input:", scalars);
+    console.log("Intersection with object input:", objs);
+    console.log("Intersection with array input:", arrays);
+
+    var colinear = mm.segmentsIntersect(0, 0, 100, 100, 50, 50, 100, 100);
+
+    console.log("Detected colinear segments:", colinear);
+
+    var nonintersect = mm.segmentsIntersect(0, 0, 100, 100, 50, 1, 100, 0);
+
+    console.log("Non-intersecting segments yield undefined thus:", nonintersect);
+}
 
 testDivisors();
 testIsPrime();
@@ -241,3 +269,5 @@ testVariance();
 testManhattanDistance();
 testMinkowskiDistance();
 testChebyshevDistance();
+testHaversineDistance();
+testSegmentsIntersect();
