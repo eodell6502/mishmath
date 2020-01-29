@@ -249,6 +249,24 @@ function testSegmentsIntersect() {
     console.log("Non-intersecting segments yield undefined thus:", nonintersect);
 }
 
+// pointToLine =================================================================
+
+function testPointToLine() {
+    var tests = [
+        [ 0, 0, 0, 100, 100, 0 ],
+        [ 25, 25, 0, 100, 100, 0 ],
+        [ 50, 50, 0, 100, 100, 0 ],
+        [ 75, 75, 0, 100, 100, 0 ],
+        [ 100, 100, 0, 100, 100, 0 ],
+        [ 50, 100, 0, 50, 100, 50 ],
+    ];
+
+    for(var i = 0; i < tests.length; i++) {
+        var test = tests[i];
+        console.log("Point (" + test[0] + ", " + test[1] + ") to line (" + test[2] + ", " + test[3] + ")-(" + test[4] + ", " + test[5] + ") is " + mm.pointToLine(test[0], test[1], test[2], test[3], test[4], test[5]));
+    }
+}
+
 testDivisors();
 testIsPrime();
 testPermutations();
@@ -271,3 +289,4 @@ testMinkowskiDistance();
 testChebyshevDistance();
 testHaversineDistance();
 testSegmentsIntersect();
+testPointToLine();

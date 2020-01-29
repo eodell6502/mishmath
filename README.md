@@ -1,8 +1,8 @@
-# mishmath v0.0.6
+# mishmath v0.0.7
 
 **A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules**
 
-**NEW in 0.0.6**: Haversine distances and line segment intersections.
+**NEW in 0.0.7**: Point to line distance.
 
 ## Table of Contents
 
@@ -155,6 +155,11 @@ Given an array of arbitrary elements, `arr`, returns an array of all
 permutations. If the optional `unique` argument is `true`, only unique
 permutations will be returned.
 
+**pointToLine(x, y, x1, y1, x2, y2)**
+
+Returns the shortest distance from point (`x`, `y`) to line segment (`x1`, `y1`) -
+(`x2`, `y2`).
+
 **polarToCartesian(r, t)**
 
 Given polar coordinates `r` (radial/rho) and `t` (angular/theta), the latter
@@ -245,6 +250,10 @@ a mountain of other awesome math/graphics modules that are well worth checking o
 function used for the unique permutations option came out of janjarfalk's
 [`get-unique-permutations`](https://www.npmjs.com/package/get-unique-permutations),
 where it is wrapped around the original `get-permutations` module.
+
+**pointToLine** is one of the few I came across on StackOverflow, which does contain
+some gems if you're willing to sort through a few megatons of overconfident people
+incorrecting each other. This gem is by [Joshua Perina](http://joshua.perina.com/),
 
 **primeFactors** is derived from [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
 [`get-prime-factors`](https://www.npmjs.com/package/get-prime-factors).

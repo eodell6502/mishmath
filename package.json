@@ -1,6 +1,6 @@
 {
   "name": "mishmath",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules",
   "main": "mishmath.js",
   "dependencies": {
