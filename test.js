@@ -267,6 +267,29 @@ function testPointToLine() {
     }
 }
 
+// pointInPolygon ==============================================================
+
+function testPointInPolygon() {
+    var polygon1 = [ [0, 0], [10, 0], [10, 10], [0, 10] ];
+    var polygon2 = [ 0, 0, 10, 0, 10, 10, 0, 10 ];
+    var pointIn  = [ 5, 5 ];
+    var pointOut = [ 20, 20 ];
+
+    console.log("pointIn is "  + (mm.pointInPolygon(pointIn, polygon1)  ? "in" : "not in") + " polygon1.");
+    console.log("pointIn is "  + (mm.pointInPolygon(pointIn, polygon2)  ? "in" : "not in") + " polygon2.");
+    console.log("pointOut is " + (mm.pointInPolygon(pointOut, polygon1) ? "in" : "not in") + " polygon1.");
+    console.log("pointOut is " + (mm.pointInPolygon(pointOut, polygon2) ? "in" : "not in") + " polygon2.");
+}
+
+// centroid ====================================================================
+
+function testCentroid() {
+    var points = [ [0, 0], [1, 0], [1, 1], [0, 1] ];
+    console.log("Centroid of points is", mm.centroid(points));
+}
+
+
+
 testDivisors();
 testIsPrime();
 testPermutations();
@@ -290,3 +313,5 @@ testChebyshevDistance();
 testHaversineDistance();
 testSegmentsIntersect();
 testPointToLine();
+testPointInPolygon();
+testCentroid();

@@ -1,8 +1,10 @@
-# mishmath v0.0.7
+# mishmath v0.0.8
+
+![mishmath title](img/mishmath.png)
 
 **A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules**
 
-**NEW in 0.0.7**: Point to line distance.
+**NEW in 0.0.8**: Point-in-polygon test, centroid calculation in arbitrary dimensions.
 
 ## Table of Contents
 
@@ -52,11 +54,15 @@ Suggestions and contributions are always welcome.
 
 Given an array of numbers, returns their average or arithmetic mean.
 
+---
+
 **cartesianToPolar(x, y)**
 
 Given Cartesian coordinates `x` and `y`, returns an object of the form
 `{r: num, t: num} where `r` is the radial/rho value and `t` is
 the angular/theta value (in radians).
+
+---
 
 **cartesianToSpherical(x, y, z)**
 
@@ -65,10 +71,21 @@ Given 3D Cartesian coordinates `x`, `y`, `z`, returns an object of the form
 is the azimuthal angle in radians, and `phi` is polar angle (inclination) in
 radians.
 
+---
+
+**centroid(points)**
+
+Given an array of `points`, each point being an array of arbitrary (but equal)
+length, return their centroid.
+
+---
+
 **chebyshevDistance(a, b)**
 
 Given two coordinate vectors of any dimensionality, return the Chebyshev
 distance between them.
+
+---
 
 **combogen(m, n, mode)**
 
@@ -82,8 +99,10 @@ var gen = combogen(2, 4);
 console.log([...gen]); // [ [ 3, 2 ], [ 0, 2 ], [ 1, 2 ], [ 1, 2 ], [ 0, 2 ], [ 0, 1 ] ]
 
 gen = combogen(2, 4, 'mask');
-console.log([...gen]); // [ [ 0, 0, 1, 1 ][ 1, 0, 0, 1 ],[ 0, 1, 0, 1 ],[ 0, 1, 1, 0 ],[ 1, 0, 1, 0 ],[ 1, 1, 0, 0 ] ]
+console.log([...gen]); // [ [ 0, 0, 1, 1 ],[ 1, 0, 0, 1 ],[ 0, 1, 0, 1 ],[ 0, 1, 1, 0 ],[ 1, 0, 1, 0 ],[ 1, 1, 0, 0 ] ]
 ```
+
+---
 
 **cylindricalToSpherical(rho, phi, z)**
 
@@ -92,9 +111,13 @@ Given cylindrical coordinates `rho` (radial distance), `phi` (azimuth), and `z`
 `rho` is the radial distance, `theta` is the azimuthal angle in radians, and
 `phi` is polar angle (inclination) in radians.
 
+---
+
 **deg2rad(degrees)**
 
 Given an angle in `degrees`, returns its equivalent in radians.
+
+---
 
 **distance(a, b)**
 
@@ -102,9 +125,13 @@ Returns the Euclidean distance between two points, `a` and `b`, which are both
 represented as arrays of coordinates. Works for any arbitrary dimension of 2 or
 higher.
 
+---
+
 **divisors(n)**
 
 Given an integer, `n`, return an array containing all of its divisors.
+
+---
 
 **fisherYatesShuffle(arr, inplace, rng)**
 
@@ -114,6 +141,8 @@ a new array is created. The optional `rng` argument can be used to supply a
 random number generation callback to replace the default `Math.random`. Returns
 the shuffled array.
 
+---
+
 **haversineDistance(lat1, lon1, lat2, lon2, planetRadius = 6371000)**
 
 Calculates the distance between two sets of decimal latitude and longitude
@@ -122,14 +151,20 @@ result is in meters. To use different units (or to calculate distances on
 another planet entirely), supply an explicit value for `planetRadius` in the
 units desired.
 
+---
+
 **isPrime(n)**
 
 Tests `n` for primality, returning `true` if prime or `false` if composite.
+
+---
 
 **manhattanDistance(a, b)**
 
 Given two coordinate vectors of any dimensionality, return the Manhattan
 distance between them.
+
+---
 
 **minkowskiDistance(a, b, p)**
 
@@ -137,10 +172,14 @@ Given two coordinate vectors of any dimensionality, return the Minkowski
 distance between them for order `p`. For `p == 1`, this is equivalent to the
 Manhattan distance, and `p == 2` is equivalent to the Euclidean distance.
 
+---
+
 **normdist(value, mean, stddev)**
 
 Given a value, mean, and standard deviation, returns the value of the normal
 distribution.
+
+---
 
 **permutationParity(arr)**
 
@@ -149,29 +188,53 @@ sign](https://en.wikipedia.org/wiki/Parity_of_a_permutation). The parity is
 represented by `1` if the permutation is odd, `-1` if it is even, and `0` if
 `arr` is not a permutation
 
+---
+
 **permutations(arr, unique = false)**
 
 Given an array of arbitrary elements, `arr`, returns an array of all
 permutations. If the optional `unique` argument is `true`, only unique
 permutations will be returned.
 
+---
+
+**pointInPolygon(point, polygon, start = 0, end = polygon.length)**
+
+Determines whether `point` is inside `polygon` using a ray-casting algorithm.
+The `point` is given as a two-element array, while `polygon` may be either
+an array of two-element points or a flat array of coordinates.
+
+The optional `start` and `end` coordinates allow you to specify a range of
+coordinates in `polygon` to use for the actual polygon in cases where many
+polygons are specified in the actual array.
+
+---
+
 **pointToLine(x, y, x1, y1, x2, y2)**
 
 Returns the shortest distance from point (`x`, `y`) to line segment (`x1`, `y1`) -
 (`x2`, `y2`).
+
+---
 
 **polarToCartesian(r, t)**
 
 Given polar coordinates `r` (radial/rho) and `t` (angular/theta), the latter
 in radians, returns an object of the form `{x: num, y: num}`.
 
+---
+
 **primeFactors(n)**
 
 Returns an array containing the prime factors of `n`.
 
+---
+
 **rad2deg(radians)**
 
 Given an angle in `radians`, returns its equivalent in degrees.
+
+---
 
 **segmentsIntersect(x1, y1, x2, y2, x3, y3, x4, y4)**
 
@@ -183,11 +246,15 @@ if they neither intersect nor ar colinear, `undefined` is returned.
 The arguments may also be passed as four objects of the form `{ x: ..., y: ... }`
 or four `[x, y]` arrays.
 
+---
+
 **sphericalToCartesian(rho, theta, phi)**
 
 Given spherical coordinates `rho` (radial distance), `theta` (azimuthal angle in
 radians), and `phi` (polar angle or inclination in radians), returns an object
 of the form `{x: num, y: num, z: num}`.
+
+---
 
 **sphericalToCylindrical(rho, theta, phi)**
 
@@ -196,9 +263,13 @@ radians), and `phi` (polar angle or inclination in radians), returns an object
 of the form `{rho: num, phi: num, z: num}` where `rho` is the radial distance, `phi`
 is the azimuth, and `z` is the height.
 
+---
+
 **stddev(ary)**
 
 Takes an array of numbers and returns their standard deviation.
+
+---
 
 **variance(ary)**
 
@@ -217,6 +288,9 @@ module authors, and all of them are quite good.
 
 **combogen** is based on the very nicely coded [`ml-combinations`](https://www.npmjs.com/package/ml-combinations)
 package.
+
+**centroid** is based on [Joe D'Alessandro](https://www.npmjs.com/~xupit3r)'s
+elegant and compact [centroider](https://www.npmjs.com/package/centroider).
 
 **divisors** is based on [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
 [`get-divisors`](https://www.npmjs.com/package/get-divisors).
@@ -251,9 +325,13 @@ function used for the unique permutations option came out of janjarfalk's
 [`get-unique-permutations`](https://www.npmjs.com/package/get-unique-permutations),
 where it is wrapped around the original `get-permutations` module.
 
+**pointInPolygon** is from [nopersonsmodules](https://www.npmjs.com/~nopersonsmodules)'s
+elegant [point-in-polygon](https://www.npmjs.com/package/point-in-polygon), which is
+in turn based this [ray-casting algorithm](https://wrf.ecse.rpi.edu/Research/Short_Notes/pnpoly.html).
+
 **pointToLine** is one of the few I came across on StackOverflow, which does contain
 some gems if you're willing to sort through a few megatons of overconfident people
-incorrecting each other. This gem is by [Joshua Perina](http://joshua.perina.com/),
+incorrecting each other. This gem is by [Joshua Perina](http://joshua.perina.com/).
 
 **primeFactors** is derived from [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
 [`get-prime-factors`](https://www.npmjs.com/package/get-prime-factors).
@@ -298,6 +376,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <a name="todo"></a>
 ## Todo
 
+* Spline interpolation
 * Continue to cherry-pick ml-distance?
 * Generatorics
 * Wrapper around combogen to produce explicit array
@@ -305,8 +384,48 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 * Linear regression
 * Lehmer codes
 
+<!--
+
+npm packages to plunder:
+
+disi
+foreach-combination
+furlong
+generatorics
+get-average-if
+get-matrix-sums
+historical-permutations
+js-combinations
+ml-distance
+ordered-char-combinations
+permutron
+remap-value
+typedarray-pool
+
+npm packages that are too popular and/or not suited for mishmath, but are still awesome.
+
+curve-interpolator
+wuzzy
+
+-->
+
 <a name="changelog"></a>
 ## Changelog
+
+0.0.8:
+
+* Removed temporary dependencies.
+* `pointInPolygon`
+* `centroid`
+
+0.0.7:
+
+* `pointToLine`
+
+0.0.6:
+
+* `haversineDistance`
+* `segmentsIntersect`
 
 0.0.5:
 
