@@ -1,6 +1,6 @@
 {
   "name": "mishmath",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules",
   "main": "mishmath.js",
   "dependencies": {
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/Waidthaler/mishmath.git"
   },
-  "author": "Erich Waidthaler",
+  "author": "Eric O'Dell",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Waidthaler/mishmath/issues"

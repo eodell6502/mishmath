@@ -288,7 +288,21 @@ function testCentroid() {
     console.log("Centroid of points is", mm.centroid(points));
 }
 
+// polygonArea =================================================================
 
+function testPolygonArea() {
+    var points = [ [0, 0], [1, 0], [1, 1], [0, 1] ];
+    console.log("Area of clockwise unit square is", mm.polygonArea(points));
+    console.log("Area of counter-clockwise unit square is", mm.polygonArea(points.reverse()));
+}
+
+// polygonIsClockwise ==========================================================
+
+function testPolygonIsClockwise() {
+    var points = [ [0, 0], [1, 0], [1, 1], [0, 1] ];
+    console.log("Clockwise polygon is clockwise?", mm.polygonIsClockwise(points));
+    console.log("Counter-clockwise polygon is clockwise?", mm.polygonIsClockwise(points.reverse()));
+}
 
 testDivisors();
 testIsPrime();
@@ -315,3 +329,5 @@ testSegmentsIntersect();
 testPointToLine();
 testPointInPolygon();
 testCentroid();
+testPolygonArea();
+testPolygonIsClockwise();

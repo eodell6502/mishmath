@@ -1,10 +1,10 @@
-# mishmath v0.0.8
+# mishmath v0.0.9
 
 ![mishmath title](img/mishmath.png)
 
 **A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules**
 
-**NEW in 0.0.8**: Point-in-polygon test, centroid calculation in arbitrary dimensions.
+**NEW in 0.0.9**: Polygon area and vertex clockwise test.
 
 ## Table of Contents
 
@@ -224,6 +224,19 @@ in radians, returns an object of the form `{x: num, y: num}`.
 
 ---
 
+**polygonArea(p)**
+
+Returns the area of a polygon specified as an array of `[x,y]` vertices.
+
+---
+
+**polygonIsClockwise(p)**
+
+Given a polygon specified as an array of `[x,y]` vertices, returns boolean `true`
+if the vertices are in clockwise order, `false` otherwise.
+
+---
+
 **primeFactors(n)**
 
 Returns an array containing the prime factors of `n`.
@@ -333,6 +346,9 @@ in turn based this [ray-casting algorithm](https://wrf.ecse.rpi.edu/Research/Sho
 some gems if you're willing to sort through a few megatons of overconfident people
 incorrecting each other. This gem is by [Joshua Perina](http://joshua.perina.com/).
 
+**polygonArea** and **polygonIsClockwise** are derived from
+[tmpvar](https://www.npmjs.com/~tmpvar)'s [2d-polygon-area](https://www.npmjs.com/package/2d-polygon-area).
+
 **primeFactors** is derived from [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
 [`get-prime-factors`](https://www.npmjs.com/package/get-prime-factors).
 
@@ -350,7 +366,7 @@ additions (by tmpvar, not me).
 <a name="license"></a>
 ## License
 
-Copyright 2019 Erich Waidthaler, original authors, and subsequent contributors
+Copyright 2019-2023 Eric O'Dell, original authors, and subsequent contributors
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -376,6 +392,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <a name="todo"></a>
 ## Todo
 
+* Polygon self-intersection
 * Spline interpolation
 * Continue to cherry-pick ml-distance?
 * Generatorics
@@ -411,6 +428,10 @@ wuzzy
 
 <a name="changelog"></a>
 ## Changelog
+
+0.0.9:
+* `polygonArea`
+* `polygonIsClockwise`
 
 0.0.8:
 
