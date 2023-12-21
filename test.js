@@ -304,6 +304,25 @@ function testPolygonIsClockwise() {
     console.log("Counter-clockwise polygon is clockwise?", mm.polygonIsClockwise(points.reverse()));
 }
 
+// polygonOverlap ==============================================================
+
+function testPolygonOverlap() {
+    var polyA = [ [1,1], [1,4], [4,1] ];
+    var polyB = [ [2,2], [2,4], [4,2] ];
+    var polyC = [ [4,4], [4,5], [5,4] ];
+
+    console.log("Poly A overlaps Poly B?", mm.polygonOverlap(polyA, polyB));
+    console.log("Poly B overlaps Poly A?", mm.polygonOverlap(polyB, polyA));
+    console.log("Poly A overlaps Poly C?", mm.polygonOverlap(polyA, polyC));
+
+    var polyD = [ [1,2], [1,3], [4,3], [4,2] ];
+    var polyE = [ [2,1], [2,4], [3,4], [3,1] ];
+
+    console.log("Poly D overlaps Poly E?", mm.polygonOverlap(polyD, polyE));
+
+}
+
+
 testDivisors();
 testIsPrime();
 testPermutations();
@@ -331,3 +350,4 @@ testPointInPolygon();
 testCentroid();
 testPolygonArea();
 testPolygonIsClockwise();
+testPolygonOverlap();

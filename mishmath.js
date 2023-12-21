@@ -976,6 +976,42 @@ function _polygonArea(a) {
 
 
 //==============================================================================
+// Given two polygons in the form of two arrays of x,y coordinates, returns a
+// boolean indicating whether they overlap.
+
+mishmath.polygonOverlap = function(polyA, polyB) {
+
+    // First, check for points in polygons -------------------------------------
+
+    for(var p = 0; p < polyA.length; p++)
+        if(mishmath.pointInPolygon(polyA[p], polyB))
+            return true;
+
+    for(var p = 0; p < polyB.length; p++)
+        if(mishmath.pointInPolygon(polyB[p], polyA))
+            return true;
+
+    // Second, check for line intersections ------------------------------------
+
+    for(var p1 = 0; p1 < polyA.length; p1++) {
+        for(var p2 = 0; p2 < polyB.length; p2++) {
+            var res = mishmath.segmentsIntersect(
+                polyA[p1][0], polyA[p1][1],
+                polyA[(p1+1) % polyA.length][0], polyA[(p1+1) % polyA.length][1],
+                polyB[p2][0], polyB[p2][1],
+                polyB[(p2+1) % polyB.length][0], polyB[(p2+1) % polyB.length][1]
+            );
+            if(Array.isArray(res))
+                return true;
+        }
+    }
+
+    return false;
+
+}
+
+
+//==============================================================================
 
 module.exports = mishmath;
 

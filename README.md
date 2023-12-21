@@ -4,7 +4,7 @@
 
 **A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules**
 
-**NEW in 0.0.9**: Polygon area and vertex clockwise test.
+**NEW in 0.0.10**: Polygon overlap test.
 
 ## Table of Contents
 
@@ -232,8 +232,16 @@ Returns the area of a polygon specified as an array of `[x,y]` vertices.
 
 **polygonIsClockwise(p)**
 
-Given a polygon specified as an array of `[x,y]` vertices, returns boolean `true`
-if the vertices are in clockwise order, `false` otherwise.
+Given a polygon specified as an array of `[x,y]` vertices, returns boolean
+`true` if the vertices are in clockwise order, `false` otherwise.
+
+---
+
+**polygonOverlap(poly1, poly2)**
+
+Given two polygons specified as arrays of `[x,y]` vertices, returns boolean
+`true` if the polygons overlap, `false` otherwise. N.b.: Colinear polygons
+are not considered overlaps here.
 
 ---
 
@@ -254,7 +262,7 @@ Given an angle in `radians`, returns its equivalent in degrees.
 Given two line segments (`x1`, `y1`) -- (`x2`, `y2`) and (`x3`, `y3`) -- (`x4`, `y4`),
 returns an array with the coordinates of their intersection if they in
 fact intersect. If they are colinear, boolean `true` is returned, and
-if they neither intersect nor ar colinear, `undefined` is returned.
+if they neither intersect nor are colinear, `undefined` is returned.
 
 The arguments may also be passed as four objects of the form `{ x: ..., y: ... }`
 or four `[x, y]` arrays.
