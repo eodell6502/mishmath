@@ -1,4 +1,4 @@
-# mishmath v0.0.9
+# mishmath v0.0.10
 
 ![mishmath title](img/mishmath.png)
 
