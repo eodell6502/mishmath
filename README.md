@@ -1,10 +1,10 @@
-# mishmath v0.0.10
+# mishmath v0.0.11
 
 ![mishmath title](img/mishmath.png)
 
 **A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules**
 
-**NEW in 0.0.10**: Polygon overlap test.
+**NEW in 0.0.11**: Polygon overlap test.
 
 ## Table of Contents
 
