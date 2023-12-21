@@ -322,6 +322,32 @@ function testPolygonOverlap() {
 
 }
 
+// rotate ======================================================================
+
+function testRotate() {
+    var master = ["A", "B", "C", "D", "E"];
+
+    var a = master.slice(0);
+    mm.rotate(a, 0);
+    console.log("Rotating ABCDE by 0:", a.join(""));
+
+    var a = master.slice(0);
+    mm.rotate(a, 2);
+    console.log("Rotating ABCDE by 2:", a.join(""));
+
+    var a = master.slice(0);
+    mm.rotate(a, -2);
+    console.log("Rotating ABCDE by -2:", a.join(""));
+
+    var a = master.slice(0);
+    mm.rotate(a, 7);
+    console.log("Rotating ABCDE by 7:", a.join(""));
+
+    var a = master.slice(0);
+    mm.rotate(a, -7);
+    console.log("Rotating ABCDE by -7:", a.join(""));
+}
+
 
 testDivisors();
 testIsPrime();
@@ -351,3 +377,4 @@ testCentroid();
 testPolygonArea();
 testPolygonIsClockwise();
 testPolygonOverlap();
+testRotate();

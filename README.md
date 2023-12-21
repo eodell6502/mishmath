@@ -1,8 +1,10 @@
-# mishmath v0.0.11
+# mishmath v0.0.12
 
 ![mishmath title](img/mishmath.png)
 
 **A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules**
+
+**NEW in 0.0.12**: Efficient array `rotate` function.
 
 **NEW in 0.0.11**: Polygon overlap test.
 
@@ -257,6 +259,12 @@ Given an angle in `radians`, returns its equivalent in degrees.
 
 ---
 
+**rotate(arr, k)**
+
+Rotates array `arr` by `k` elements in place.
+
+---
+
 **segmentsIntersect(x1, y1, x2, y2, x3, y3, x4, y4)**
 
 Given two line segments (`x1`, `y1`) -- (`x2`, `y2`) and (`x3`, `y3`) -- (`x4`, `y4`),
@@ -360,6 +368,10 @@ incorrecting each other. This gem is by [Joshua Perina](http://joshua.perina.com
 **primeFactors** is derived from [janjarfalk](https://www.npmjs.com/~janjarfalk)'s
 [`get-prime-factors`](https://www.npmjs.com/package/get-prime-factors).
 
+**rotate** is based on [Sean Welsh Brown](https://dev.to/seanwelshbrown)'s
+example [here](https://dev.to/seanwelshbrown/two-ways-to-rotate-an-array-in-javascript-1bi3),
+with a small modification to support negative values of `k`.
+
 **segmentsIntersect** is based on [tmpvar](https://www.npmjs.com/~tmpvar)'s
 [segseg](https://www.npmjs.com/package/segseg), which in turn is based on
 Mukesh Prasad's public domain code in _Graphics Gems_, plus some ease-of-use
@@ -436,6 +448,12 @@ wuzzy
 
 <a name="changelog"></a>
 ## Changelog
+
+0.0.12
+* `rotate`
+
+0.0.11:
+* `polygonOverlap`
 
 0.0.9:
 * `polygonArea`
