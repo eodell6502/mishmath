@@ -1,12 +1,10 @@
-# mishmath v0.0.12
+# mishmath v0.0.13
 
 ![mishmath title](img/mishmath.png)
 
 **A collection of miscellaneous math routines for Node.js, mostly culled from other FOSS modules**
 
-**NEW in 0.0.12**: Efficient array `rotate` function.
-
-**NEW in 0.0.11**: Polygon overlap test.
+**NEW in 0.0.13**: Fixed bug in `polygonIsClockwise`
 
 ## Table of Contents
 
@@ -448,6 +446,9 @@ wuzzy
 
 <a name="changelog"></a>
 ## Changelog
+
+0.0.13
+* Bugfix in `polygonIsClockwise`
 
 0.0.12
 * `rotate`

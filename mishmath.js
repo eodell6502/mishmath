@@ -949,7 +949,7 @@ mishmath.polygonArea = function(polygon) {
 //==============================================================================
 
 mishmath.polygonIsClockwise = function(polygon) {
-    return _polygonArea(polygon) < 0 ? true : false;
+    return _polygonArea(polygon) > 0 ? true : false;
 }
 
 //------------------------------------------------------------------------------

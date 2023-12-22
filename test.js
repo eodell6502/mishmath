@@ -299,7 +299,7 @@ function testPolygonArea() {
 // polygonIsClockwise ==========================================================
 
 function testPolygonIsClockwise() {
-    var points = [ [0, 0], [1, 0], [1, 1], [0, 1] ];
+    var points = [ [0,1], [1,1], [1,0], [0,0] ];
     console.log("Clockwise polygon is clockwise?", mm.polygonIsClockwise(points));
     console.log("Counter-clockwise polygon is clockwise?", mm.polygonIsClockwise(points.reverse()));
 }
